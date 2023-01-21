@@ -3,7 +3,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { IRepo } from '../interfaces/serviceInterface/repo.interface';
+import { IRepo } from '../interfaces/apiInterfaces/repo.interface';
 
 type PropsInterface = Pick<
   IRepo,

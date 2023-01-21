@@ -1,4 +1,4 @@
-import { IRepo } from './../interfaces/serviceInterface/repo.interface';
+import { IRepo } from '../interfaces/apiInterfaces/repo.interface';
 
 export function sortByDate(repos: IRepo[]) {
   return repos.sort((a, b) => {

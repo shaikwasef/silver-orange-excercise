@@ -1,4 +1,4 @@
-import { IRepo } from '../interfaces/serviceInterface/repo.interface';
+import { IRepo } from '../interfaces/apiInterfaces/repo.interface';
 import RepositoryCard from './RepositoryCard';
 import Styles from '../Styles/Components/repositoryContainer.module.scss';
 import {
@@ -6,6 +6,7 @@ import {
   sortByDate,
 } from '../utils/repository-container.utils';
 import LanguageButtonsGroup from './LanguageButtonsGroup';
+import RepoInfoModal from './RepoInfoModal';
 import { useState } from 'react';
 interface PropsInterface {
   repos: IRepo[];
@@ -13,13 +14,9 @@ interface PropsInterface {
 
 export default function RepositoryContainer(props: PropsInterface) {
   const { repos } = props;
-  const [sortedRepos, setSortedRepos] = useState(sortByDate(repos));
-
-  const repoComponents = sortedRepos.map((repo) => {
-    return RepositoryElement(repo);
-  });
-
-  const languages = getRepoLanguages(repos);
+  const [sortedRepos, setSortedRepos] = useState<IRepo[]>([]);
+  const [focusedRepo, setFocusedRepo] = useState<IRepo>();
+  const [modalOpen, setModalOpen] = useState(false);
 
   const handleLanguageChange = (value: string) => {
     const filteredRepos =
@@ -27,8 +24,28 @@ export default function RepositoryContainer(props: PropsInterface) {
     setSortedRepos(sortByDate(filteredRepos));
   };
 
+  const handleRepoClick = (id: number) => {
+    const clickedRepoIdx = repos.findIndex((repo) => repo.id === id);
+    setFocusedRepo(repos[clickedRepoIdx]);
+    setModalOpen(true);
+  };
+
+  const repoComponents = getSortedRepoComponents(
+    sortedRepos.length ? sortedRepos : repos,
+    handleRepoClick
+  );
+
+  const languages = getRepoLanguages(repos);
+  console.log(focusedRepo);
   return (
     <div className={Styles.repositoryContainer}>
+      {focusedRepo && (
+        <RepoInfoModal
+          open={modalOpen}
+          handleClose={() => setModalOpen(false)}
+          repo={focusedRepo}
+        />
+      )}
       <LanguageButtonsGroup
         languages={languages}
         handleClick={handleLanguageChange}
@@ -38,15 +55,30 @@ export default function RepositoryContainer(props: PropsInterface) {
   );
 }
 
-function RepositoryElement(repo: IRepo): JSX.Element {
+function getSortedRepoComponents(
+  repos: IRepo[],
+  handleRepoClick: (id: number) => void
+) {
+  return repos.map((repo) => RepositoryElement(repo, handleRepoClick));
+}
+
+function RepositoryElement(
+  repo: IRepo,
+  handleRepoClick: (id: number) => void
+): JSX.Element {
   const { name, description, language, forks, id } = repo;
   return (
-    <RepositoryCard
+    <div
       key={id}
-      name={name}
-      description={description}
-      language={language}
-      forks={forks}
-    />
+      onClick={() => handleRepoClick(id)}
+      className={Styles.cardContainers}
+    >
+      <RepositoryCard
+        name={name}
+        description={description}
+        language={language}
+        forks={forks}
+      />
+    </div>
   );
 }

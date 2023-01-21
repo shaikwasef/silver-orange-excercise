@@ -1,10 +1,11 @@
 import './App.css';
 import RepositoryContainer from './Components/RepositoryContainer';
-import useApi from './hooks/use-api';
-import { IRepo } from './interfaces/serviceInterface/repo.interface';
+import { apiEndPoints } from './helpers/api-helper';
+import useApi from './helpers/hooks/use-api';
+import { IRepo } from './interfaces/apiInterfaces/repo.interface';
 
 export function App() {
-  const reposData = useApi<IRepo>('http://localhost:4000/repos');
+  const reposData = useApi<IRepo>(apiEndPoints.LOCAL_HOST_REPOS_API);
 
   return (
     <div className="App">
