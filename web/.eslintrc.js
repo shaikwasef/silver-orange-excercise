@@ -77,11 +77,11 @@ const newConfig = Object.assign({}, config, {
           '@typescript-eslint/naming-convention': [
             'error',
             {
-              selector: ['variableLike', 'memberLike'],
+              selector: ['variableLike'],
               format: ['camelCase'],
             },
             {
-              selector: ['property', 'variable'],
+              selector: ['variable'],
               format: ['camelCase', 'UPPER_CASE'],
             },
             {
