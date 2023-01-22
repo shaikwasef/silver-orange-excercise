@@ -1,5 +1,6 @@
+@import '../main.scss';
 .errorContainer{
-  @extend .flexDisplay;
+  @extend .flexDisplay ;
 	width: max-content;
 	margin: auto;
 	padding: 1rem;
