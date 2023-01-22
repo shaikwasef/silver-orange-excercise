@@ -11,6 +11,9 @@ import ReactMarkdown from 'react-markdown';
 import useApiMarkDown from '../helpers/hooks/use-api-markdown';
 import CloseIcon from '@mui/icons-material/Close';
 import Styles from '../Styles/Components/repo-info-modal.module.scss';
+import CircularProgress from '@mui/material/CircularProgress';
+import { IApiError } from '../interfaces/use-api.interface';
+import ErrorComponent from './ErrorComponent';
 
 interface PropsInterface {
   open: boolean;
@@ -26,30 +29,44 @@ export default function RepoInfoModal(props: PropsInterface) {
   const markDownContent = useApiMarkDown(
     'https://raw.githubusercontent.com/silverorange/admin/master/README.md'
   );
-
   const commitData = commits.length ? commits[0] : null;
   return (
-    <>
-      {commitData && (
-        <Dialog open={open} onClose={handleClose} className={Styles.dialog}>
-          <DialogTitle className={Styles.dialogHeader}>
-            <IconButton onClick={handleClose} color="primary">
-              <CloseIcon />
-            </IconButton>
-          </DialogTitle>
-          <DialogContent>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              <span className={Styles.headings}>Author's name : </span>
-              {commitData.commit.author.name}
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              <span className={Styles.headings}>Commit : </span>
-              {commitData.commit.message}
-            </Typography>
-            <ReactMarkdown>{markDownContent}</ReactMarkdown>
-          </DialogContent>
-        </Dialog>
-      )}
-    </>
+    <Dialog open={open} onClose={handleClose} className={Styles.dialog}>
+      <DialogTitle className={Styles.dialogHeader}>
+        <IconButton onClick={handleClose} color="primary">
+          <CloseIcon />
+        </IconButton>
+      </DialogTitle>
+      {getContentComponent(commitData, markDownContent, loading, error)}
+    </Dialog>
   );
+}
+
+function getContentComponent(
+  commitData: Commit | null,
+  markDownContent: string,
+  loading: boolean,
+  error?: IApiError
+) {
+  if (loading) {
+    return <CircularProgress className={Styles.loaderClass} />;
+  }
+  if (error) {
+    return <ErrorComponent error={error} />;
+  }
+  if (commitData) {
+    return (
+      <DialogContent>
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          <span className={Styles.headings}>Author's name : </span>
+          {commitData.commit.author.name}
+        </Typography>
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          <span className={Styles.headings}>Commit : </span>
+          {commitData.commit.message}
+        </Typography>
+        {markDownContent && <ReactMarkdown>{markDownContent}</ReactMarkdown>}
+      </DialogContent>
+    );
+  }
 }

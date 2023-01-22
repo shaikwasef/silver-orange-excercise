@@ -1,6 +1,19 @@
 .dialog{
 	max-height: 500px;
+	min-width: fit-content;
 	top: 150px !important;
+	:global {
+		.MuiPaper-root{
+			min-width: 500px;
+			min-height: 200px;
+		}
+	}
+}
+
+.loaderClass {
+	position: absolute;
+	top : 50%;
+	left: 50%;
 }
 
 .dialogHeader{

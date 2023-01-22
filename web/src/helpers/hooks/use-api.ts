@@ -12,11 +12,7 @@ export default function useApi<ResponseType>(
   useEffect(() => {
     setLoading(true);
     axios
-      .get(url, {
-        validateStatus(status) {
-          return status < 700; // Resolve only if the status code is less than 500
-        },
-      })
+      .get(url)
       .then((resp) => {
         setLoading(false);
         setApiData(resp.data);

@@ -1,5 +1,6 @@
 .errorContainer{
-	width: 100%;
+	width: min-content;
+	padding: 1rem;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
