@@ -1,4 +1,4 @@
-silverorange Intermediate Developer Assessment
+Silver orange intermediate developer assignment
 ==============================================
 
 This exercise is designed to assess how you approach tasks required in your
