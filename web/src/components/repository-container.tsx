@@ -1,9 +1,10 @@
 import { IRepo } from '../interfaces';
-import RepositoryCard from './repository-card';
+
 import Styles from '../Styles/Components/repositoryContainer.module.scss';
 import { getRepoLanguages } from '../utils';
 import LanguageButtonsGroup from './language-buttons-group';
 import RepoInfoModal from './repo-info-modal';
+import RepositoryCard from './repository-card';
 import { useState } from 'react';
 interface PropsInterface {
   repos: IRepo[];
