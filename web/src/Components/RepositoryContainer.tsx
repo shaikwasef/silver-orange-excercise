@@ -31,12 +31,11 @@ export default function RepositoryContainer(props: PropsInterface) {
   };
 
   const repoComponents = getSortedRepoComponents(
-    sortedRepos.length ? sortedRepos : repos,
+    sortedRepos.length ? sortedRepos : sortByDate(repos),
     handleRepoClick
   );
 
   const languages = getRepoLanguages(repos);
-  console.log(focusedRepo);
   return (
     <div className={Styles.repositoryContainer}>
       {focusedRepo && (
