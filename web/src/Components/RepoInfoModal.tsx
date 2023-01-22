@@ -62,6 +62,10 @@ function getContentComponent(
           {commitData.commit.author.name}
         </Typography>
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          <span className={Styles.headings}>Commit date : </span>
+          {new Date(commitData.commit.author.date).toLocaleString()}
+        </Typography>
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
           <span className={Styles.headings}>Commit : </span>
           {commitData.commit.message}
         </Typography>
