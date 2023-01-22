@@ -12,20 +12,6 @@ import useApiMarkDown from '../helpers/hooks/use-api-markdown';
 import CloseIcon from '@mui/icons-material/Close';
 import Styles from '../Styles/Components/repo-info-modal.module.scss';
 
-// const style = {
-//   position: 'absolute' as 'absolute',
-//   top: '50%',
-//   left: '50%',
-//   transform: 'translate(-50%, -50%)',
-//   width: 'fit-content',
-//   height: 400,
-//   overflow: 'scroll',
-//   bgcolor: 'background.paper',
-//   border: '2px solid #000',
-//   boxShadow: 24,
-//   p: 4,
-// };
-
 interface PropsInterface {
   open: boolean;
   handleClose: () => void;
@@ -43,9 +29,9 @@ export default function RepoInfoModal(props: PropsInterface) {
 
   const commitData = commits.length ? commits[0] : null;
   return (
-    <div>
+    <>
       {commitData && (
-        <Dialog open={open} onClose={handleClose}>
+        <Dialog open={open} onClose={handleClose} className={Styles.dialog}>
           <DialogTitle className={Styles.dialogHeader}>
             <IconButton onClick={handleClose} color="primary">
               <CloseIcon />
@@ -64,6 +50,6 @@ export default function RepoInfoModal(props: PropsInterface) {
           </DialogContent>
         </Dialog>
       )}
-    </div>
+    </>
   );
 }

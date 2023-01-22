@@ -1,8 +1,6 @@
-.headings{
-	font-weight: 500;
-	font-size: 1.2rem;
-	font-style: italic;
-	color :blue
+.dialog{
+	max-height: 500px;
+	top: 100px !important;
 }
 
 .dialogHeader{
@@ -14,4 +12,11 @@
 			right : 10px
 		}
 	}
+}
+
+.headings{
+	font-weight: 500;
+	font-size: 1.2rem;
+	font-style: italic;
+	color :blue
 }
