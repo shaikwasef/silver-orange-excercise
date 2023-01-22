@@ -1,4 +1,4 @@
-export interface Commit {
+export interface ICommit {
   sha: string;
   commit: {
     message: string;
