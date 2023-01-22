@@ -1,0 +1,27 @@
+.card {
+	width: 400px;
+	max-height: 200px;
+	min-height: 200px;
+	overflow: scroll;
+	position: relative;
+	:global {
+		.MuiTypography-root {
+			overflow: scroll;
+		}
+		.MuiCardContent-root {
+			max-height: inherit;
+			padding: 10px 0px 40px 10px;
+			.MuiTypography-root{
+				max-height: inherit;
+			}
+		}
+	}
+}
+
+.footer{
+	position:absolute;
+	width: inherit;
+	height: 40px;
+	bottom: 0;
+	background-color: white;
+}

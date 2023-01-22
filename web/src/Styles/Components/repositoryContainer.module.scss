@@ -1,5 +1,5 @@
 .repositoryContainer {
-	padding: 10rem 0;
+	padding: 5rem 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -8,4 +8,12 @@
 
 .cardContainers {
 	cursor: pointer;
+}
+
+.reposGridContainer{
+	  width : 50%;
+    display : grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    margin-bottom: 10px;
 }

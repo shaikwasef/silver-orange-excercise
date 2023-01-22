@@ -50,7 +50,7 @@ export default function RepositoryContainer(props: PropsInterface) {
         languages={languages}
         handleClick={handleLanguageChange}
       />
-      {repoComponents}
+      <div className={Styles.reposGridContainer}>{repoComponents}</div>
     </div>
   );
 }
