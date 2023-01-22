@@ -12,8 +12,7 @@ interface PropsInterface {
 
 export default function LanguageButtonsGroup(props: PropsInterface) {
   const { languages, handleClick } = props;
-
-  return (
+  return languages.length > 1 ? (
     <FormControl>
       <FormLabel>Language</FormLabel>
       <RadioGroup
@@ -34,5 +33,7 @@ export default function LanguageButtonsGroup(props: PropsInterface) {
         ))}
       </RadioGroup>
     </FormControl>
+  ) : (
+    <div />
   );
 }

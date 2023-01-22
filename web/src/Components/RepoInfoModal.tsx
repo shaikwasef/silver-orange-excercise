@@ -20,7 +20,7 @@ interface PropsInterface {
 
 export default function RepoInfoModal(props: PropsInterface) {
   const { open, handleClose, repo } = props;
-  const commits = useApi<Commit>(
+  const [commits, error, loading] = useApi<Commit>(
     `${apiEndPoints.GIT_REPOS_API}/${repo.full_name}/commits`
   );
   const markDownContent = useApiMarkDown(

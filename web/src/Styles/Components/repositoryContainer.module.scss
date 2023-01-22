@@ -7,7 +7,11 @@
 	:global {
 		.MuiPaper-root {
 			border-radius: 10px;
+			width: inherit;
 		}
+		.MuiFormControl-root{
+			margin :auto;
+		} 
 	}
 }
 
@@ -21,7 +25,7 @@
 }
 
 .reposGridContainer{
-	  width : 50%;
+	  width : 75%;
     display : grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;

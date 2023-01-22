@@ -36,6 +36,7 @@ export default function RepositoryContainer(props: PropsInterface) {
   );
 
   const languages = getRepoLanguages(repos);
+
   return (
     <div className={Styles.repositoryContainer}>
       {focusedRepo && modalOpen && (
