@@ -4,3 +4,14 @@
 	font-style: italic;
 	color :blue
 }
+
+.dialogHeader{
+	width: inherit;
+	position: relative;
+	:global {
+		.MuiButtonBase-root{
+			position: absolute;
+			right : 10px
+		}
+	}
+}
