@@ -12,7 +12,7 @@ export default function useApiMarkDown(url: string): string {
     try {
       fetchData();
     } catch (e) {
-      console.error(e);
+      setApiData(e);
     }
   }, [url]);
   return apiData;
