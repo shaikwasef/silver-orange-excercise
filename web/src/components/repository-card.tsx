@@ -1,7 +1,7 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { IRepo } from '../interfaces/apiInterfaces/repo.interface';
+import { IRepo } from '../interfaces';
 import Styles from '../Styles/Components/repo-card.module.scss';
 
 type PropsInterface = Pick<

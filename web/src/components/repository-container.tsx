@@ -1,12 +1,9 @@
-import { IRepo } from '../interfaces/apiInterfaces/repo.interface';
-import RepositoryCard from './RepositoryCard';
+import { IRepo } from '../interfaces';
+import RepositoryCard from './repository-card';
 import Styles from '../Styles/Components/repositoryContainer.module.scss';
-import {
-  getRepoLanguages,
-  sortByDate,
-} from '../utils/repository-container.utils';
-import LanguageButtonsGroup from './LanguageButtonsGroup';
-import RepoInfoModal from './RepoInfoModal';
+import { getRepoLanguages } from '../utils';
+import LanguageButtonsGroup from './language-buttons-group';
+import RepoInfoModal from './repo-info-modal';
 import { useState } from 'react';
 interface PropsInterface {
   repos: IRepo[];
@@ -21,7 +18,7 @@ export default function RepositoryContainer(props: PropsInterface) {
   const handleLanguageChange = (value: string) => {
     const filteredRepos =
       value === 'All' ? repos : repos.filter((repo) => repo.language === value);
-    setSortedRepos(sortByDate(filteredRepos));
+    setSortedRepos(filteredRepos);
   };
 
   const handleRepoClick = (id: number) => {
@@ -31,7 +28,7 @@ export default function RepositoryContainer(props: PropsInterface) {
   };
 
   const repoComponents = getSortedRepoComponents(
-    sortedRepos.length ? sortedRepos : sortByDate(repos),
+    sortedRepos.length ? sortedRepos : repos,
     handleRepoClick
   );
 

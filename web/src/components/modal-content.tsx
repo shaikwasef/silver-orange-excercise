@@ -1,21 +1,20 @@
-import { Commit } from '../interfaces/apiInterfaces/commit.interface';
 import CircularProgress from '@mui/material/CircularProgress';
-import { IApiError } from '../interfaces/use-api.interface';
-import ErrorComponent from './ErrorComponent';
+import { IApiError, ICommit } from '../interfaces';
 import ReactMarkdown from 'react-markdown';
 import DialogContent from '@mui/material/DialogContent';
 import Typography from '@mui/material/Typography';
+import ErrorComponent from './error-component';
 import Styles from '../Styles/Components/repo-info-modal.module.scss';
 
 interface PropsInterface {
-  commitData: Commit | null;
+  commitData: ICommit | null;
   markDownContent: string;
   loading: boolean;
   error?: IApiError;
   markDownContentError?: IApiError;
 }
 
-export function ModalContent(props: PropsInterface) {
+export default function ModalContent(props: PropsInterface) {
   const { commitData, markDownContent, loading, error, markDownContentError } =
     props;
   if (loading) {

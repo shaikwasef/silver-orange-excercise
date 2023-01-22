@@ -1,8 +1,8 @@
+@import '../main.scss';
+
 .repositoryContainer {
+	@extend .flexDisplay;
 	padding: 2rem 0 ;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 	row-gap: 3rem;
 	:global {
 		.MuiPaper-root {
@@ -26,10 +26,8 @@
 }
 
 .reposGridContainer{
+  @extend .flexDisplay;
 	width : 70%;
-  display : flex;
-  flex-direction: column;
-	align-items: center;
   row-gap:10px;
   margin-bottom: 10px;
 }
