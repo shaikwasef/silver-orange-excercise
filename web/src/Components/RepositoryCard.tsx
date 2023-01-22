@@ -11,7 +11,6 @@ type PropsInterface = Pick<
 
 export default function RepositoryCard(props: PropsInterface) {
   const { name, description, language, forks } = props;
-
   return (
     <Card className={Styles.card}>
       <CardContent>
