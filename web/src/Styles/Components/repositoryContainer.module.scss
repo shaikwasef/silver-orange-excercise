@@ -17,3 +17,13 @@
     grid-gap: 10px;
     margin-bottom: 10px;
 }
+
+@media screen and (max-width : 800px) {
+    .reposGridContainer{
+        display : flex;
+        flex-direction: column;
+				align-items: center;
+        row-gap:10px;
+        margin-bottom: 10px;
+    }
+}
