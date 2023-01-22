@@ -26,7 +26,7 @@ export default function RepoInfoModal(props: PropsInterface) {
   const [commits, error, loading] = useApi<Commit>(
     `${apiEndPoints.GIT_REPOS_API}/${repo.full_name}/commits`
   );
-  const markDownContent = useApiMarkDown(
+  const [markDownContent, markDownContentError] = useApiMarkDown(
     'https://raw.githubusercontent.com/silverorange/admin/master/README.md'
   );
   const commitData = commits.length ? commits[0] : null;
@@ -37,7 +37,13 @@ export default function RepoInfoModal(props: PropsInterface) {
           <CloseIcon />
         </IconButton>
       </DialogTitle>
-      {getContentComponent(commitData, markDownContent, loading, error)}
+      {getContentComponent(
+        commitData,
+        markDownContent,
+        loading,
+        error,
+        markDownContentError
+      )}
     </Dialog>
   );
 }
@@ -46,7 +52,8 @@ function getContentComponent(
   commitData: Commit | null,
   markDownContent: string,
   loading: boolean,
-  error?: IApiError
+  error?: IApiError,
+  markDownContentError?: IApiError
 ) {
   if (loading) {
     return <CircularProgress className={Styles.loaderClass} />;
@@ -69,7 +76,13 @@ function getContentComponent(
           <span className={Styles.headings}>Commit : </span>
           {commitData.commit.message}
         </Typography>
-        {markDownContent && <ReactMarkdown>{markDownContent}</ReactMarkdown>}
+        {markDownContent ? (
+          <ReactMarkdown>{markDownContent}</ReactMarkdown>
+        ) : markDownContentError ? (
+          <ErrorComponent error={markDownContentError} />
+        ) : (
+          <div />
+        )}
       </DialogContent>
     );
   }
